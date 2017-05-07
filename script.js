@@ -32,7 +32,7 @@ $(document).ready(function(){
     showInstructions.hide();
     var newContainer = document.createElement("p");
     newContainer.innerHTML = codeString;
-    document.getElementById("mySidenav").appendChild(newContainer);
+    document.getElementById("showCode2").appendChild(newContainer);
     showCode.show();
   });
   function addInstruction(instructionName, details, pythonCode){
@@ -66,11 +66,26 @@ $(document).ready(function(){
       newContainer.value = cont;
       newContainer.innerHTML = cont;
       document.getElementById("transfer_from_cell").appendChild(newContainer);
-      document.getElementById("transfer_to_cell").appendChild(newContainer);
-      document.getElementById("distribute_from_cell").appendChild(newContainer);
-      document.getElementById("distribute_to_cell").appendChild(newContainer);
-      document.getElementById("pipette_tiprack").appendChild(newContainer);
-      document.getElementById("pipette_trash").appendChild(newContainer);
+      var newContainer2 = document.createElement("option");
+      newContainer2.value = cont;
+      newContainer2.innerHTML = cont;
+      document.getElementById("transfer_to_cell").appendChild(newContainer2);
+      var newContainer3 = document.createElement("option");
+      newContainer3.value = cont;
+      newContainer3.innerHTML = cont;
+      document.getElementById("distribute_from_cell").appendChild(newContainer3);
+      var newContainer4 = document.createElement("option");
+      newContainer4.value = cont;
+      newContainer4.innerHTML = cont;
+      document.getElementById("distribute_to_cell").appendChild(newContainer4);
+      var newContainer5 = document.createElement("option");
+      newContainer5.value = cont;
+      newContainer5.innerHTML = cont;
+      document.getElementById("pipette_tiprack").appendChild(newContainer5);
+      var newContainer6 = document.createElement("option");
+      newContainer6.value = cont;
+      newContainer6.innerHTML = cont;
+      document.getElementById("pipette_trash").appendChild(newContainer6);
     }
     showPipette.show();
   });
