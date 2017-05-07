@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+  <!-- TODO(you): Make whatever changes needed to complete the homework! -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pytron</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Cabin" rel="stylesheet">
+    <link rel="stylesheet" href="style.css"/>
+    <script src="script.js" defer="true"></script>
+  </head>
+
+  <body>
+    <div id="main">
+    <article>
+      <h1>Set up your containers:</h1>
+
+      <section class="choice-grid">
+        <div data-choice-id="A3">
+          <p>A3</p>
+         </div>
+
+        <div data-choice-id="B3">
+          <p>B3</p>
+         </div>
+
+        <div data-choice-id="C3">
+          <p>C3</p>
+         </div>
+
+        <div data-choice-id="D3">
+          <p>D3</p>
+         </div>
+
+        <div data-choice-id="E3">
+          <p>E3</p>
+         </div>
+
+         <div data-choice-id="A2">
+           <p>A2</p>
+          </div>
+
+         <div data-choice-id="B2">
+           <p>B2</p>
+          </div>
+
+         <div data-choice-id="C2">
+           <p>C2</p>
+          </div>
+
+         <div data-choice-id="D2">
+           <p>D2</p>
+          </div>
+
+         <div data-choice-id="E2">
+           <p>E2</p>
+          </div>
+          <div data-choice-id="A1">
+            <p>A1</p>
+           </div>
+
+          <div data-choice-id="B1">
+            <p>B1</p>
+           </div>
+
+          <div data-choice-id="C1">
+            <p>C1</p>
+           </div>
+
+          <div data-choice-id="D1">
+            <p>D1</p>
+           </div>
+
+          <div data-choice-id="E1">
+            <p>E1</p>
+           </div>
+
+      </section>
+    </article>
+  </div>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <ul id="current_instructions">
+        </ul>
+        <div class="con-buttons">
+          <div class="container-button" data-container="trough-12row" data-third="trough">
+          <p>Trough 12-Row</p>
+          </div>
+          <div class="container-button" data-container="96-PCR-flat" data-third="plate">
+          <p>96-PCR-Flat</p>
+          </div>
+          <div class="container-button" data-container="tiprack-200ul" data-third="m200-rack">
+          <p>Tiprack-200ul</p>
+          </div>
+          <div class="container-button" data-container="point" data-third="trash">
+            <p>Trash</p>
+          </div>
+          <button id="goToPipette" class="btn"> NEXT </button>
+        </div>
+        <div id="showInstructions">
+          <h1 id="sidebar_title"> INSTRUCTIONS </h1>
+          <button id="new_instruction" class="btn"> NEW INSTRUCTION </button>
+          <div id="instructions_list" class="in_sidebar">
+            <div class="modal-content">
+               <span class="close">&times;</span>
+               <h3> Pick an instruction </h3>
+              <ul>
+                <li><button id="transfer" class="selectInstruction btn"> TRANSFER </button></li>
+                <li><button id="distribute" class="selectInstruction btn"> DISTRIBUTE </button></li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="transfer_form" class="in_sidebar">
+            <div class="modal-content">
+              <span class="cornerButton goBackToInstructions">&lt;</span>
+              <h3> TRANSFER INSTRUCTION </h3>
+              <form>
+                <label> AMOUNT (uL): </label>
+                <input id="transfer_amount" type="number"> </input>
+                <br>
+                <label> FROM: </label>
+                <select id="transfer_from_cell" ="cell" class="containerList">
+
+                </select>
+                <select id="transfer_from_type" name="plate type">
+                  <option value="rows"> ROW (e.g "1") </option>
+                  <option value="cols"> COL (e.g "A") </option>
+                  <option value="wells"> SINGLE WELL (e.g "A1") </option>
+                </select>
+                <input id="transfer_from_val" type="text" placeholder="FROM HERE"> </input>
+                <br>
+                <label> TO: </label>
+                <select id="transfer_to_cell" name="cell" class="containerList">
+
+                </select>
+                <select id="transfer_to_type" name="plate type">
+                  <option value="rows"> ROW (e.g "1") </option>
+                  <option value="cols"> COL (e.g "A") </option>
+                  <option value="wells"> SINGLE WELL (e.g "A1") </option>
+                </select>
+                <input id="transfer_to_val" type="text" placeholder="TO HERE"> </input>
+                <button id="transfer_submit" class="addInstructionButton btn"> Add Transfer </input>
+              </form>
+            </div>
+          </div>
+
+        <div id="distribute_form" class="in_sidebar">
+          <div class="modal-content">
+            <span class="cornerButton goBackToInstructions">&lt;</span>
+            <h3> DISTRIBUTE INSTRUCTION </h3>
+            <form>
+              <label> AMOUNT (uL): </label>
+              <input id="distribute_amount" type="number"> </input>
+              <br>
+              <label> FROM: </label>
+              <select id="distribute_from_cell" ="cell" class="containerList">
+
+              </select>
+              <select id="distribute_from_type" name="plate type">
+                <option value="rows"> ROW (e.g "1 or 2-7") </option>
+                <option value="cols"> COL (e.g "A or B-C") </option>
+                <option value="wells"> SINGLE WELL (e.g "A1") </option>
+              </select>
+              <input id="distribute_from_val" type="text" placeholder="FROM HERE"> </input>
+              <br>
+              <label> TO: </label>
+              <select id="distribute_to_cell" name="cell" class="containerList">
+
+              </select>
+              <select id="distribute_to_type" name="plate type">
+                <option value="rows"> ROW (e.g "1 or 2-7") </option>
+                <option value="cols"> COL (e.g "A or B-C") </option>
+                <option value="wells"> SINGLE WELL (e.g "A1") </option>
+              </select>
+              <input id="distribute_to_val" type="text" placeholder="TO HERE"> </input>
+              <button id="distribute_submit" class="addInstructionButton btn"> Add Transfer </input>
+            </form>
+          </div>
+        </div>
+        </div>
+        <div id="showPipette">
+          <button id="pipette_configBtn" class="btn"> CONFIGURE PIPETTE </button>
+          <div id="pipette_config" class="in_sidebar">
+            <div class="modal-content">
+              <h3> CONFIGURING PIPETTE </h3>
+              <label> Channels (1 or 8) </label>
+              <select name="channels" id="pipette_channels">
+                  <option value="1"> One </option>
+                  <option value="8"> Eight </option>
+              </select>
+
+              <br>
+              <label> Axis </label>
+              <select name="axis" id="pipette_axis">
+                <option value="a"> A - Center </option>
+                <option value="b"> B - Left </option>
+              </select>
+              <br>
+              <label> Tips Rack </label>
+              <select name="tipsrack" id="pipette_tiprack">
+
+              </select>
+              <br>
+              <label> Trash </label>
+              <select name="trash" id="pipette_trash">
+
+              </select>
+              <br>
+              <label> MAX VOLUME (uL) </label>
+              <input type="number" id="pipette_maxvol" placeholder="200"> </input>
+              <br>
+              <label> MIN VOLUME (uL) </label>
+              <input type="number" id="pipette_minvol" placeholder="20"> </input>
+              <button id="submitPipette"> SAVE PIPETTE </button>
+            </div>
+          </div>
+        </div>
+
+        </div>
+  </body>
+</html>
