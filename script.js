@@ -13,6 +13,8 @@ $(document).ready(function(){
   var showInstructions = $("#showInstructions");
   var containerButtons = $(".con-buttons");
   var finishButton = $("#finishAll");
+  var showCode = $("#showCode");
+  var codeString = "";
   showPipette.hide();
   showInstructions.hide();
 
@@ -22,12 +24,16 @@ $(document).ready(function(){
     this.pythonCode = pythonCode;
   }
   finishButton.on('click', function(e){
-    var string = "";
     for(const i of allInstructions){
-      string += "\n";
-      string += i.pythonCode;
-      console.log(string);
+      codeString += "\n";
+      codeString += i.pythonCode;
+      console.log(codeString);
     }
+    showInstructions.hide();
+    var newContainer = document.createElement("p");
+    newContainer.innerHTML = codeString;
+    document.getElementById("mySidenav").appendChild(newContainer);
+    showCode.show();
   });
   function addInstruction(instructionName, details, pythonCode){
     console.log("added instruction: " + instructionName);
@@ -56,7 +62,15 @@ $(document).ready(function(){
   $("#goToPipette").on('click', function(e){
     containerButtons.hide();
     for(const cont of containers){
-
+      var newContainer = document.createElement("option");
+      newContainer.value = cont;
+      newContainer.innerHTML = cont;
+      document.getElementById("transfer_from_cell").appendChild(newContainer);
+      document.getElementById("transfer_to_cell").appendChild(newContainer);
+      document.getElementById("distribute_from_cell").appendChild(newContainer);
+      document.getElementById("distribute_to_cell").appendChild(newContainer);
+      document.getElementById("pipette_tiprack").appendChild(newContainer);
+      document.getElementById("pipette_trash").appendChild(newContainer);
     }
     showPipette.show();
   });
@@ -181,7 +195,7 @@ function containerClicked(event) {
       button.style.backgroundColor = "#7aa8e8";
       well = clickedCont;
       thirdVal = theThird;
-      containers.add(well);
+      containers.push(well);
       pythonString = "thisContainer = container.load(\'" + well + "\', \'" + choice + "\', \'" + thirdVal + "\');";
       addInstruction("loadContainer", "Assigned container (" + well + ") to " + choice , pythonString);
     }
