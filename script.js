@@ -12,13 +12,23 @@ $(document).ready(function(){
   var showPipette = $("#showPipette");
   var showInstructions = $("#showInstructions");
   var containerButtons = $(".con-buttons");
+  var finishButton = $("#finishAll");
   showPipette.hide();
   showInstructions.hide();
+
   function instructionObj(name, details, pythonCode){
     this.name = name;
     this.details = details;
     this.pythonCode = pythonCode;
   }
+  finishButton.on('click', function(e){
+    var string = "";
+    for(const i of allInstructions){
+      string += "\n";
+      string += i.pythonCode;
+      console.log(string);
+    }
+  });
   function addInstruction(instructionName, details, pythonCode){
     console.log("added instruction: " + instructionName);
     var thisInstruction = new instructionObj(instructionName, details, pythonCode);
@@ -32,11 +42,22 @@ $(document).ready(function(){
     var channels, axis, tipsrack, trash, maxvol, minvol;
     channels = $("#pipette_channels").val();
     axis = $("#pipette_axis").val();
+    tipsrack = $("pipette_tiprack").val();
+    trash = $("pipette_trash").val();
+    maxvol = $("pipette_maxvol").val();
+    minvol = $("pipette_minvol").val();
+    var pythonCode = "m200 = instruments.Pipette(name=\"m200\", trash_container=";
+    pythonCode += trash+", tip_racks=["+tipsrack+"],min_volume=";
+    pythonCode += minvol+",max_volume="+maxvol+",axis="+axis+",channels="+channels+")";
+    addInstruction("Add Pipette", "Add pipette with ", pythonCode);
     showPipette.hide();
     showInstructions.show();
   });
   $("#goToPipette").on('click', function(e){
     containerButtons.hide();
+    for(const cont of containers){
+
+    }
     showPipette.show();
   });
   $('#pipette_configBtn').on('click', function(e){
@@ -105,6 +126,7 @@ $(document).ready(function(){
       var pythonLine = "pipette.transfer(" + amount + ", plate." + fromType+ "('" + fromVal + "'), plate."
         + toType + "('" + toVal + "'))";
       console.log(pythonLine);
+      hideCurrent();
     }
   });
   closeModal.on('click', function(e){
@@ -159,6 +181,7 @@ function containerClicked(event) {
       button.style.backgroundColor = "#7aa8e8";
       well = clickedCont;
       thirdVal = theThird;
+      containers.add(well);
       pythonString = "thisContainer = container.load(\'" + well + "\', \'" + choice + "\', \'" + thirdVal + "\');";
       addInstruction("loadContainer", "Assigned container (" + well + ") to " + choice , pythonString);
     }
