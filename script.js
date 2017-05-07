@@ -211,7 +211,7 @@ function containerClicked(event) {
       well = clickedCont;
       thirdVal = theThird;
       containers.push(well);
-      pythonString = "thisContainer = container.load(\'" + well + "\', \'" + choice + "\', \'" + thirdVal + "\');";
+      pythonString = "thisContainer = container.load(\'" + well + "\', \'" + choice + "\', \'" + thirdVal + "\')";
       addInstruction("loadContainer", "Assigned container (" + well + ") to " + choice , pythonString);
     }
     else {
