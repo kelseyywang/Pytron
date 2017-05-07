@@ -25,7 +25,7 @@ $(document).ready(function(){
   }
   finishButton.on('click', function(e){
     for(const i of allInstructions){
-      codeString += "\n";
+      codeString += "\n" + "<br>";
       codeString += i.pythonCode;
       console.log(codeString);
     }
